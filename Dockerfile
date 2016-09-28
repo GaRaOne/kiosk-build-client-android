@@ -1,4 +1,6 @@
-FROM ubuntu:trusty
+FROM ubuntu:xenial
+
+MAINTAINER GaRaOne
 
 ARG QT=5.7.0
 ARG QTM=5.7
@@ -16,6 +18,8 @@ ENV ANDROID_NDK_PLATFORM android-21
 ENV ANDROID_NDK_TOOLS_PREFIX ${ANDROID_NDK_TOOLCHAIN_PREFIX}
 ENV QMAKESPEC android-g++
 ENV PATH=${PATH}:${QT_ANDROID}/bin:${ANDROID_HOME}/tools:${ANDROID_HOME}/platform-tools
+
+RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 
 RUN sudo dpkg --add-architecture i386 && \
     apt-get update -q && \
@@ -77,3 +81,5 @@ RUN mkdir /tmp/android \
 
 # CLEAN CACHE
 RUN rm -rf /var/lib/apt/lists/*
+
+CMD ["/bin/bash"]
