@@ -41,7 +41,7 @@ RUN sudo dpkg --add-architecture i386 && \
         libz1:i386 \        
         mesa-common-dev \
         openssh-client \
-        p7zip \
+        p7zip-full \
         xvfb \
     && apt-get clean
 

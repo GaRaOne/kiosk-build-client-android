@@ -5,4 +5,4 @@ TAG := picokiosk/kiosk-build-client-android
 .PHONY: image
 
 image: $(QTF)
-	docker build --no-cache=true --build-arg QT=$(QT) --build-arg QTM=$(QTM) --tag $(TAG) .
+	docker build --build-arg QT=$(QT) --build-arg QTM=$(QTM) --tag $(TAG) .
