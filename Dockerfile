@@ -9,7 +9,7 @@ ENV DEBIAN_FRONTEND noninteractive
 ENV QT_PATH /opt/qt
 ENV QT_BASE_DIR=$QT_PATH
 
-ENV QT_ANDROID ${QT_PATH}/${QTM}/android_armv7
+ENV QT_ARCH ${QT_PATH}/${QTM}/android_armv7
 ENV ANDROID_HOME /opt/android-sdk-linux
 ENV ANDROID_SDK_ROOT ${ANDROID_HOME}
 ENV ANDROID_NDK_ROOT /opt/android-ndk
@@ -19,7 +19,7 @@ ENV ANDROID_NDK_HOST linux-x86_64
 ENV ANDROID_NDK_PLATFORM android-21
 ENV ANDROID_NDK_TOOLS_PREFIX ${ANDROID_NDK_TOOLCHAIN_PREFIX}
 ENV QMAKESPEC android-g++
-ENV PATH=${PATH}:${QT_ANDROID}/bin:${ANDROID_HOME}/tools:${ANDROID_HOME}/platform-tools
+ENV PATH=${PATH}:${QT_ARCH}/bin:${ANDROID_HOME}/tools:${ANDROID_HOME}/platform-tools
 
 RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 
