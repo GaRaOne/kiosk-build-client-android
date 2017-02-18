@@ -1,5 +1,5 @@
-QT := 5.7.0
-QTM := 5.7
+QT := 5.8.0
+QTM := 5.8
 TAG := picokiosk/kiosk-build-client-android
 
 .PHONY: image

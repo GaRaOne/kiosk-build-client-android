@@ -2,11 +2,13 @@ FROM ubuntu:trusty
 
 MAINTAINER GaRaOne
 
-ARG QT=5.7.0
-ARG QTM=5.7
+ARG QT=5.8.0
+ARG QTM=5.8
 
 ENV DEBIAN_FRONTEND noninteractive
 ENV QT_PATH /opt/qt
+ENV QT_BASE_DIR=$QT_PATH
+
 ENV QT_ANDROID ${QT_PATH}/${QTM}/android_armv7
 ENV ANDROID_HOME /opt/android-sdk-linux
 ENV ANDROID_SDK_ROOT ${ANDROID_HOME}
@@ -58,9 +60,11 @@ RUN chmod +x /tmp/qt/installer.run \
      | egrep -v '\[[0-9]+\] Warning: (Unsupported screen format)|((QPainter|QWidget))' \
     && rm -rf /tmp/qt
 
-RUN echo /opt/qt/${QTM}/android_armv7/lib > /etc/ld.so.conf.d/qt-${QTM}.conf
 RUN locale-gen en_US.UTF-8 \
     && dpkg-reconfigure locales
+
+# START ANDROID STUFF
+RUN echo /opt/qt/${QTM}/android_armv7/lib > /etc/ld.so.conf.d/qt-${QTM}.conf
 
 # download & unpack android sdk
 RUN mkdir /tmp/android \
@@ -78,6 +82,8 @@ RUN mkdir /tmp/android \
     && mv android-ndk-r10e $ANDROID_NDK_ROOT \
     && chmod -R +rX $ANDROID_NDK_ROOT \
     && rm -rf /tmp/android
+
+# END ANDROID STUFF
 
 # CLEAN CACHE
 RUN rm -rf /var/lib/apt/lists/*
